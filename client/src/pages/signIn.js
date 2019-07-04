@@ -10,7 +10,7 @@ class signIn extends Component {
     state = {
         user: "",
         password: "",
-        redirectTo: ""
+        loggedIn: false
     };
 
     handleInputChange = event => {
@@ -22,7 +22,7 @@ class signIn extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        Axios.post("/user/login", {
+        API.getUser("/users/login", {
             user: this.state.user,
             password: this.state.password
         })
@@ -47,13 +47,15 @@ class signIn extends Component {
             <Container fluid>
                 <Row>
                     <Col size="md-12">
+                        <div style={{width: "60%", margin: "20px auto"}}>
+                        <h1>Login</h1>
                         <label>Username: </label>
                         <Input
                             value={this.state.user}
                             onChange={this.handleInputChange}
                             name="user"
                             placeholder="Input your username"
-                            style={{width: "50%", margin: "0 auto"}}
+                            style={{margin: "0 auto"}}
                         />
                         <label style={{margin: "auto"}}>Password: </label>
                         <Input 
@@ -61,15 +63,14 @@ class signIn extends Component {
                             onChange={this.handleInputChange}
                             name="password"
                             placeholder="Input your password"
-                            style={{width: "50%", margin: "0 auto"}}
+                            style={{margin: "0 auto"}}
                         />
                         <FormBtn
                             disabled={!(this.state.appNo && this.state.fileNo)}
                             onClick={this.handleFormSubmit}
                             style={{backgroundColor: "gray", border: "gray", margin: "0 auto"}}
                         >
-                            <Link style={{color: "white"}} to="/apps"
-                            >Login</Link>
+                            Login
                         </FormBtn>
                         <FormBtn
                             disabled={!(this.state.appNo && this.state.fileNo)}
@@ -79,6 +80,7 @@ class signIn extends Component {
                             <Link style={{color: "white"}} to="/addUser"
                             >Sign Up!</Link>
                         </FormBtn>
+                        </div>
                     </Col>
                 </Row>
             </Container>

@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Outline/Outline"
 import { Input, TextArea, FormBtn } from "../components/Form/Form";
 
-class addPatentApp extends Component {
+class AddPatentApp extends Component {
     state = {
-        app:{},
+        _id: null,
         fileNo: "",
         appNo: "",
         PTA: 0
@@ -15,7 +15,11 @@ class addPatentApp extends Component {
 
     componentDidMount(){
         API.getApp(this.props.match.params.id)
-        .then(res => this.setState({ app: res.data }))
+        .then(res => {
+            console.log(res)
+            this.setState({ ...res.data })
+        })
+
         .catch(err => console.log(err))
     }
 
@@ -29,29 +33,29 @@ class addPatentApp extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.appNo && this.state.fileNo) {
+        if (this.state._id){
+            API.updateApp(this.state._id, {
+                fileNo: this.state.fileNo,
+                appNo: this.state.appNo,
+                PTA: this.state.PTA
+        })
+            .then(() => this.props.history.push("/"))
+            .catch(err => console.log(err));
+        }
+        else if (this.state.appNo && this.state.fileNo) {
         API.saveApp({
             fileNo: this.state.fileNo,
             appNo: this.state.appNo,
             PTA: this.state.PTA
         })
-            .then(res => this.loadApps())
+            .then(() => this.props.history.push("/"))
             .catch(err => console.log(err));
-        } 
-        else if (this.state.app.fileNo && this.state.appNo){
-            API.saveApp({
-                fileNo: this.state.app.fileNo,
-                appNo: this.state.app.appNo,
-                PTA: this.state.app.PTA
-            })
-                .then(res => this.loadApps())
-                .catch(err => console.log(err))
         }
-            
     }
 
 
     render() {
+        console.log(this.props)
         return(
         <Container fluid>
         <Row>
@@ -62,19 +66,19 @@ class addPatentApp extends Component {
                 <Input
                     value={this.state.app.fileNo}
                     onChange={this.handleInputChange}
-                    name="app.fileNo"
+                    name="fileNo"
                 />
                 <label>Input the Application Number</label>
                 <Input
                     value={this.state.app.appNo}
                     onChange={this.handleInputChange}
-                    name="app.appNo"
+                    name="appNo"
                 />
                 <label>Input the number of days allotted, due to Patent Term Adjustment Number</label>
                 <Input
                     value={this.state.app.PTA}
                     onChange={this.handleInputChange}
-                    name="app.PTA"
+                    name="PTA"
                 />
                 <Link to="/" style={{color: "white"}}>
                 <FormBtn
@@ -113,9 +117,8 @@ class addPatentApp extends Component {
                 disabled={!(this.state.appNo && this.state.fileNo)}
                 onClick={this.handleFormSubmit}
                 style={{backgroundColor: "green", marginBottom: "10px"}}
-            ><Link to="/" style={{color: "white"}}>
+            >
                 Submit Application
-                </Link>
             </FormBtn>
             </form>
             )}
@@ -131,4 +134,4 @@ class addPatentApp extends Component {
         };
 }
 
-export default addPatentApp
+export default AddPatentApp

@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Outline/Outline";
 import API from "../utils/API";
 import { Input, TextArea, FormBtn } from "../components/Form/Form";
-import Axios from "axios";
- 
 
-class signIn extends Component {
+class addUser extends Component {
     state = {
         user: "",
         password: "",
-        redirectTo: "/"
+        loggedIn: false
     };
 
     handleInputChange = event => {
@@ -21,22 +19,23 @@ class signIn extends Component {
     };
 
     handleFormSubmit = event => {
+        console.log("Saving user...")
         event.preventDefault();
-        Axios.post("/", {
-            user: this.state.user,
-            password: this.state.password
-        })
-        .then(response => {
-            console.log(response)
-            if (response.data) {
-                console.log("Successful signup")
-                this.setState({
-                    redirectTo: "/login"
-                })
-            }
-        }).catch(error => {
-            console.log("Sign up error: " + error)
-        })
+        if (this.state.user && this.state.password) {
+            API.saveUser({
+                user: this.state.user,
+                password: this.state.password
+            })
+            .then(response => {
+                console.log(response)
+                if (response.data) {
+                    console.log("Successful signup")
+                    .then(()=> this.props.history.push("/login"))
+                }
+            }).catch(error => {
+                console.log("Sign up error: " + error)
+            })
+        }
     }
 
     render() {
@@ -44,6 +43,7 @@ class signIn extends Component {
             <Container fluid>
                 <Row>
                     <Col size="md-12">
+                        <div style={{width: "60%", margin: "20px auto"}}>
                         <h1>Sign Up Form</h1>
                         <label>Username: </label>
                         <Input
@@ -60,19 +60,18 @@ class signIn extends Component {
                             placeholder="Input your password"
                         />
                         <FormBtn
-                            disabled={!(this.state.appNo && this.state.fileNo)}
+                            disabled={!(this.state.user && this.state.password)}
                             onClick={this.handleFormSubmit}
                             style={{backgroundColor: "gray", border: "gray"}}
+
                         >
-                            <Link to="/login"
-                            style={{color: "white"}}
-                            value={this.state.signedIn=true}
-                            >Sign Up!</Link>
+                            Sign Up
                         </FormBtn>
+                    </div>
                     </Col>
                 </Row>
             </Container>
         )}
 }
 
-export default signIn
+export default addUser

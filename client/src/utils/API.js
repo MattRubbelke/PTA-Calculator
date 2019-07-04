@@ -16,5 +16,18 @@ export default {
   // Saves an Application to the database
   saveApp: function(appData) {
     return axios.post("/api/apps", appData);
+  },
+
+  // Updates an Application to the database
+  updateApp: function(id, appData) {
+      return axios.put("/api/apps/"+ id, appData);
+    },
+
+  saveUser: function(userData){
+    return axios.post("/api/users", userData);
+  },
+
+  getUser: function(userData){
+    return axios.get("api/users", userData);
   }
 };
