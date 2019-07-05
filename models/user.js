@@ -4,9 +4,9 @@ const bcrypt = require("bcryptjs")
 const passport = require("passport")
 
 const userSchema = new Schema({
-    user: "",
-    password: "",
-    loggedIn: fasle
+    user: String,
+    password: String,
+    loggedIn: {type: Boolean, default: false}
 });
 
 // userSchema.methods = {

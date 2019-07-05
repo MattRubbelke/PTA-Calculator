@@ -20,6 +20,7 @@ function App() {
           <Route exact path="/add" component={AddPatent} />
           <Route exact path="/add/:id" component={AddPatent} />
           <Route exact path="/apps/:id" component={Detail} />
+          <Route exact path="/uspto" component={() => window.location = "https://www.uspto.gov"}/>
           {/* <Route component={NoMatch} /> */}
         </Switch>
       </div>

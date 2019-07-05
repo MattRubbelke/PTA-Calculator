@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Outline/Outline";
 import API from "../utils/API";
-import { Input, TextArea, FormBtn } from "../components/Form/Form";
-import Axios from "axios";
- 
+import { Input, FormBtn } from "../components/Form/Form";
 
 class signIn extends Component {
     state = {
+        users: {},
         user: "",
         password: "",
-        loggedIn: false
+        currentUser: {}
     };
 
     handleInputChange = event => {
@@ -22,24 +20,37 @@ class signIn extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        API.getUser("/users/login", {
-            user: this.state.user,
-            password: this.state.password
-        })
-        .then(response => {
-            console.log("login response: " + response)
-            if (response.status === 200) {
-                this.props.updateUser({
-                    loggedIn: true,
-                    user: response.data.user
-                })
+        API.getUser()
+        .then(res => {
+            this.setState({ users: res.data })
+            console.log(this.state.users)
+            for (let i = 0; i < this.state.users.length; i++){
+                if (this.state.users[i].user === this.state.user && this.state.users[i].password === this.state.password){
+                    console.log("Success")
+                    this.setState(prevState => {
+                        let currentUser = {...prevState.users[i]}
+                        currentUser.loggedIn = true;
+                        API.updateUser(currentUser._id, currentUser)
+                        this.setState({currentUser: currentUser})
+                        return {currentUser}
+                    })
+                    console.log("Updated User")
+                    this.props.history.push("/")
+                }
+            }
+            if (!this.state.currentUser.user){
+                alert("Your username and/or password do not match. Please try again.")
             }
         })
-        this.setState({
-            redirectTo:"/"
-        }).catch(error => {
+        .catch(error => {
             console.log("login error: "+ error)
+            alert("Hmmm. Your username and/or password do not match. Please try again.")
         })
+    }
+
+    handleSignUp = event => {
+        event.preventDefault();
+        this.props.history.push("/addUser")
     }
 
     render() {
@@ -64,21 +75,20 @@ class signIn extends Component {
                             name="password"
                             placeholder="Input your password"
                             style={{margin: "0 auto"}}
+                            type="password"
                         />
                         <FormBtn
-                            disabled={!(this.state.appNo && this.state.fileNo)}
+                            disabled={!(this.state.user && this.state.password)}
                             onClick={this.handleFormSubmit}
                             style={{backgroundColor: "gray", border: "gray", margin: "0 auto"}}
                         >
                             Login
                         </FormBtn>
                         <FormBtn
-                            disabled={!(this.state.appNo && this.state.fileNo)}
-                            onClick={this.handleFormSubmit}
+                            onClick={this.handleSignUp}
                             style={{backgroundColor: "gray", marginLeft: "20px", border: "gray"}}
                         >
-                            <Link style={{color: "white"}} to="/addUser"
-                            >Sign Up!</Link>
+                        Sign Up!
                         </FormBtn>
                         </div>
                     </Col>

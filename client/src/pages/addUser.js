@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Outline/Outline";
 import API from "../utils/API";
-import { Input, TextArea, FormBtn } from "../components/Form/Form";
+import { Input, FormBtn } from "../components/Form/Form";
 
 class addUser extends Component {
     state = {
         user: "",
-        password: "",
-        loggedIn: false
+        password: ""
     };
 
     handleInputChange = event => {
@@ -30,7 +28,7 @@ class addUser extends Component {
                 console.log(response)
                 if (response.data) {
                     console.log("Successful signup")
-                    .then(()=> this.props.history.push("/login"))
+                    this.props.history.push("/login")
                 }
             }).catch(error => {
                 console.log("Sign up error: " + error)
@@ -58,6 +56,7 @@ class addUser extends Component {
                             onChange={this.handleInputChange}
                             name="password"
                             placeholder="Input your password"
+                            type="password"
                         />
                         <FormBtn
                             disabled={!(this.state.user && this.state.password)}

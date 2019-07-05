@@ -24,10 +24,14 @@ export default {
     },
 
   saveUser: function(userData){
-    return axios.post("/api/users", userData);
+    return axios.post("/api/user", userData);
   },
 
   getUser: function(userData){
-    return axios.get("api/users", userData);
+    return axios.get("/api/user", userData);
+  },
+
+  updateUser: function(id, userData) {
+    return axios.put("/api/user/"+ id, userData);
   }
 };

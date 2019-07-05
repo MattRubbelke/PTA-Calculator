@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Outline/Outline"
-import { Input, TextArea, FormBtn } from "../components/Form/Form";
+import { Input, FormBtn } from "../components/Form/Form";
 
 class AddPatentApp extends Component {
     state = {
@@ -80,7 +80,6 @@ class AddPatentApp extends Component {
                     onChange={this.handleInputChange}
                     name="PTA"
                 />
-                <Link to="/" style={{color: "white"}}>
                 <FormBtn
                     disabled={!(this.state.app.fileNo && this.state.app.appNo)}
                     onClick={this.handleFormSubmit}
@@ -88,7 +87,6 @@ class AddPatentApp extends Component {
                 >
                     Update Application
                 </FormBtn>
-                </Link>
                 </form>
             ):(
             <form style={{marginTop: "30px"}}>

@@ -4,7 +4,7 @@ import "./style.css";
 function Dashboard(props){
     return <div className="dashboard">
     <div>
-        <h1 style={{margin: "20px auto"}}>Hello {props.user}!</h1>
+        <h1 style={{margin: "20px auto"}}>{props.user}'s Dashboard</h1>
     </div>
     <div>
         <p style={{fontSize: "20px"}}>Calculate your PTA! Click the add button to 
