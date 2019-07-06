@@ -11,12 +11,12 @@ mongoose.connect(
 const applicationSeed = [
   {
     fileNo: "01005.004US1",
-    appNo: "15/352,345",
+    appNo: "15352345",
     PTA: 8
   },
   {
     fileNo: "01111.004US1",
-    appNo: "15/422,345",
+    appNo: "15422345",
     PTA: 459
   }
 ];
