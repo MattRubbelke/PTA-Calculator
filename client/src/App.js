@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import PatentApps from "./pages/PatentApps"
+import PatentApps from './pages/PatentApps'
 import AddPatent from "./pages/AddPatentApp"
 import Nav from "./components/Nav/index"
 import Detail from "./pages/Detail"
