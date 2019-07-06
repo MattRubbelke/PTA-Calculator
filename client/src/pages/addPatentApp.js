@@ -97,7 +97,7 @@ class AddPatentApp extends Component {
                 name="fileNo"
                 placeholder="File Number (required)"
             />
-            <label>Input the Application Number</label>
+            <label>Input the Application Number (numbers only)</label>
             <Input
                 value={this.state.appNo}
                 onChange={this.handleInputChange}

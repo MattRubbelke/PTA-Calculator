@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Outline/Outline";
 import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form/Form";
+import { Link } from "react-router-dom";
 
 class addUser extends Component {
     state = {
@@ -48,14 +49,14 @@ class addUser extends Component {
                             value={this.state.user}
                             onChange={this.handleInputChange}
                             name="user"
-                            placeholder="Input your username"
+                            placeholder="Input your username (required)"
                         />
                         <label>Password: </label>
                         <Input 
                             value={this.state.password}
                             onChange={this.handleInputChange}
                             name="password"
-                            placeholder="Input your password"
+                            placeholder="Input your password (required)"
                             type="password"
                         />
                         <FormBtn
@@ -66,6 +67,9 @@ class addUser extends Component {
                         >
                             Sign Up
                         </FormBtn>
+                        <br />
+                        <br />
+                                <Link to="/login">Back to Login</Link>
                     </div>
                     </Col>
                 </Row>

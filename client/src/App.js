@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import PatentApp from "./pages/patentApps"
-import AddPatent from "./pages/addPatentApp"
+import PatentApp from "./pages/PatentApps"
+import AddPatent from "./pages/AddPatentApp"
 import Nav from "./components/Nav/index"
 import Detail from "./pages/Detail"
 import './App.css';
-import signIn from './pages/signIn';
-import addUser from "./pages/addUser"
+import SignIn from './pages/SignIn';
+import AddUser from "./pages/AddUser"
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/login" component={signIn} />
-          <Route exact path="/addUser" component={addUser}/>
+          <Route exact path="/login" component={SignIn} />
+          <Route exact path="/addUser" component={AddUser}/>
           <Route exact path="/" component={PatentApp} />
           <Route exact path="/add" component={AddPatent} />
           <Route exact path="/add/:id" component={AddPatent} />

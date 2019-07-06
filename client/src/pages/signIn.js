@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Outline/Outline";
 import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form/Form";
+import bcrypt from "bcryptjs"
 
 class signIn extends Component {
     state = {
         users: {},
         user: "",
         password: "",
-        currentUser: {}
+        currentUser: {},
+        validationStyle: "none",
+        loggedIn: false
     };
 
     handleInputChange = event => {
@@ -23,28 +26,30 @@ class signIn extends Component {
         API.getUser()
         .then(res => {
             this.setState({ users: res.data })
-            console.log(this.state.users)
             for (let i = 0; i < this.state.users.length; i++){
-                if (this.state.users[i].user === this.state.user && this.state.users[i].password === this.state.password){
-                    console.log("Success")
+                if (this.state.users[i].user === this.state.user){
                     this.setState(prevState => {
                         let currentUser = {...prevState.users[i]}
                         currentUser.loggedIn = true;
                         API.updateUser(currentUser._id, currentUser)
                         this.setState({currentUser: currentUser})
+                    bcrypt.compare(this.state.password, this.state.currentUser.password, function(err, res) {
+                        let currentUser = {...prevState.users[i]}
+                        currentUser.loggedIn = true;
+                        API.updateUser(currentUser._id, currentUser)
                         return {currentUser}
                     })
-                    console.log("Updated User")
                     this.props.history.push("/")
+                    });
+                    
                 }
             }
             if (!this.state.currentUser.user){
-                alert("Your username and/or password do not match. Please try again.")
+                this.setState({validationStyle: "block"})
             }
         })
         .catch(error => {
             console.log("login error: "+ error)
-            alert("Hmmm. Your username and/or password do not match. Please try again.")
         })
     }
 
@@ -90,6 +95,10 @@ class signIn extends Component {
                         >
                         Sign Up!
                         </FormBtn>
+                        <div 
+                        style={{display: this.state.validationStyle, backgroundColor: "red", borderRadius: "15px", color: "white", textAlign: "center", marginTop: "20px"}}> 
+                        Your username and/or password did not match. Please try again.
+                        </div>
                         </div>
                     </Col>
                 </Row>
