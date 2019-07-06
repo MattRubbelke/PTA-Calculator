@@ -1,7 +1,10 @@
 {
   "name": "pta-calculator",
   "version": "1.0.0",
-  "description": "Helps you store and calculate your TPA",
+  "description": "Helps you store and calculate your PTA",
+  "engines": {
+    "node": "10.15.0"
+  },
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
