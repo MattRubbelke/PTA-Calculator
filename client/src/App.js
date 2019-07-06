@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import PatentApp from "./pages/PatentApps"
+import PatentApps from "./pages/PatentApps"
 import AddPatent from "./pages/AddPatentApp"
 import Nav from "./components/Nav/index"
 import Detail from "./pages/Detail"
@@ -16,7 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/login" component={SignIn} />
           <Route exact path="/addUser" component={AddUser}/>
-          <Route exact path="/" component={PatentApp} />
+          <Route path="/" component={PatentApps} />
           <Route exact path="/add" component={AddPatent} />
           <Route exact path="/add/:id" component={AddPatent} />
           <Route exact path="/apps/:id" component={Detail} />
