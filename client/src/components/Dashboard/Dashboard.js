@@ -1,5 +1,4 @@
 import React from "react";
-import "./style.css";
 
 function Dashboard(props){
     return <div className="dashboard">
