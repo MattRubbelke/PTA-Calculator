@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const MONGODB_URI = require("./config/keys")
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +28,11 @@ app.use(
 );
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/patentapps");
+mongoose.connect(MONGODB_URI || "mongodb://localhost/patentapps",
+  {
+    useMongoClient = true
+  }
+);
 
 // Start the API server
 app.listen(PORT, function() {

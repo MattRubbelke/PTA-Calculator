@@ -1,0 +1,1 @@
+module.exports = "mongodb://mrubbelke:meetthegoal2019!@ds247827.mlab.com:47827/heroku_fp7x43km"
