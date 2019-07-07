@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Outline/Outline"
 import { Input, FormBtn } from "../components/Form/Form";
 
-class AddPatentApp extends Component {
+class Add extends Component {
     state = {
         _id: null,
         fileNo: "",
@@ -132,4 +132,4 @@ class AddPatentApp extends Component {
         };
 }
 
-export default AddPatentApp
+export default Add
