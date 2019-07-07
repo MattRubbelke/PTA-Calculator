@@ -4,7 +4,7 @@ import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form/Form";
 import bcrypt from "bcryptjs"
 
-class signIn extends Component {
+class Sign extends Component {
     state = {
         users: {},
         user: "",
@@ -106,4 +106,4 @@ class signIn extends Component {
         )}
 }
 
-export default signIn
+export default Sign
