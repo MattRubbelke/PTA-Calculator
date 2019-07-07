@@ -28,11 +28,7 @@ app.use(
 );
 
 // Connect to the Mongo DB
-mongoose.connect(MONGODB_URI || "mongodb://localhost/patentapps",
-  {
-    useMongoClient = true
-  }
-);
+mongoose.connect(MONGODB_URI || "mongodb://localhost/patentapps");
 
 // Start the API server
 app.listen(PORT, function() {
