@@ -1,7 +1,5 @@
 const express = require("express");
 const session = require("express-session")
-const bcrypt = require("bcryptjs");
-const passport = require("passport")
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -26,11 +24,7 @@ app.use(
     resave: false,
     saveUninitialized: false
   })
-)
-
-// Passport 
-app.use(passport.initialize())
-app.use(passport.session())
+);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/patentapps");

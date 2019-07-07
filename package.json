@@ -2,16 +2,16 @@
   "name": "pta-calculator",
   "version": "1.0.0",
   "description": "Helps you store and calculate your PTA",
-  "engines": {
-    "node": "10.15.0"
-  },
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "install": "cd client && npm install"
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "herokud-prebuild": "cd client && npm install",
+    "heroku-postbuild": "npm scripts/build.js"
   },
   "author": "Matt Rubbelke",
   "license": "ISC",
@@ -28,7 +28,6 @@
     "express-session": "^1.16.2",
     "if-env": "^1.0.4",
     "moment": "^2.24.0",
-    "mongoose": "^5.3.16",
-    "passport": "^0.4.0"
+    "mongoose": "^5.3.16"
   }
 }
