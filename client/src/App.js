@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav/index";
-import Apps from "./pages/PatentApps";
+import Apps from "./pages/Apps";
 import AddPatent from "./pages/AddPatentApp";
 import Detail from "./pages/Detail";
 import SignIn from './pages/SignIn';
