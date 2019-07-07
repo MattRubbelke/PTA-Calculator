@@ -5,7 +5,7 @@ import { Col, Row, Container } from "../components/Outline/Outline";
 import Dashboard from "../components/Dashboard/Dashboard";
 import { List, Table, Header, ListItem} from "../components/List/List";
 
-class PatentApps extends Component {
+class Apps extends Component {
   state = {
     applications: [],
     users: {},
@@ -100,4 +100,4 @@ class PatentApps extends Component {
   }
 }
 
-export default PatentApps;
+export default Apps;
