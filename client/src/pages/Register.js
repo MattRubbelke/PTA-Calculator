@@ -4,7 +4,7 @@ import API from "../utils/API";
 import { Input, FormBtn } from "../components/Form/Form";
 import { Link } from "react-router-dom";
 
-class addUser extends Component {
+class Register extends Component {
     state = {
         user: "",
         password: ""
@@ -77,4 +77,4 @@ class addUser extends Component {
         )}
 }
 
-export default addUser
+export default Register

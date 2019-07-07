@@ -5,7 +5,7 @@ import Apps from "./pages/Apps";
 import Add from "./pages/Add";
 import Detail from "./pages/Detail";
 import Sign from './pages/Sign';
-import AddUser from "./pages/AddUser"
+import Register from "./pages/Register"
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/login" component={Sign} />
-          <Route exact path="/addUser" component={AddUser}/>
+          <Route exact path="/addUser" component={Register}/>
           <Route exact path="/" component={Apps} />
           <Route exact path="/add" component={Add} />
           <Route exact path="/add/:id" component={Add} />
