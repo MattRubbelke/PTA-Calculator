@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Nav from "./components/Nav/index";
 import PatentApps from "./pages/PatentApps";
 import AddPatent from "./pages/AddPatentApp";
-import Nav from "./components/Nav/index";
 import Detail from "./pages/Detail";
 import SignIn from './pages/SignIn';
 import AddUser from "./pages/AddUser"
