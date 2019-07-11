@@ -1,4 +1,4 @@
-<img src="https://imgur.com/Jd5Gte7">
+<img src="https://i.imgur.com/Jd5Gte7.png">
 
 # PTA Calculator
 With growing concerns regarding the USPTO's calculation of Patenter Term Adjustment determination, it is more important than ever to review PTA. The PTA Capture an Application's Patent Term Adjustment (PTA) throughout prosecution. 
